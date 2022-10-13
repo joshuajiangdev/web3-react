@@ -10,8 +10,8 @@ export default function Home() {
 
   useEffect(() => {
     const hasEthereum = window.ethereum != null
-    const isMetaMask = window.ethereum.isMetaMask ?? false
-    const isRobinhoodWallet = window.ethereum.isRobinhoodWallet ?? false
+    const isMetaMask = (window.ethereum as any).isMetaMask ?? false
+    const isRobinhoodWallet =  (window.ethereum as any).isRobinhoodWallet ?? false
 
     alert(`hasEthereum: ${hasEthereum}\nisMetaMask: ${isMetaMask}\nisRobinhoodWallet: ${isRobinhoodWallet}`)
   })
