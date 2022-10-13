@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import CoinbaseWalletCard from '../components/connectorCards/CoinbaseWalletCard'
 import GnosisSafeCard from '../components/connectorCards/GnosisSafeCard'
 import MetaMaskCard from '../components/connectorCards/MetaMaskCard'
@@ -6,26 +7,18 @@ import WalletConnectCard from '../components/connectorCards/WalletConnectCard'
 import ProviderExample from '../components/ProviderExample'
 
 export default function Home() {
+
+  useEffect(() => {
+    const hasEthereum = window.ethereum != null
+    const isMetaMask = window.ethereum.isMetaMask ?? false
+    const isRobinhood = window.ethereum.isRobinhoodWallet ?? false
+
+    alert(`hasEthereum: ${hasEthereum}\nisMetaMask: ${isMetaMask}\nisRobinhood: ${isRobinhood}`)
+  })
+
   return (
     <>
       <ProviderExample />
-      <div style={{width: 'full'}}>
-        {
-          (window.ethereum) ?
-          <div>Has window.ethereum</div> :
-          <div>Does not have window.ethereum</div>
-        }
-
-        {
-          window.ethereum.isMetaMask &&
-          <div>Metamask Injected</div>
-        }
-
-        {
-          window.ethereum.isRobinhoodWallet &&
-          <div>Robinhood Wallet Injected</div>
-        }
-      </div>
       <div style={{ display: 'flex', flexFlow: 'wrap', fontFamily: 'sans-serif' }}>
         <MetaMaskCard />
         <WalletConnectCard />
